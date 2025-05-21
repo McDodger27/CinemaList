@@ -1,0 +1,22 @@
+.pageSelector {
+    background-color: #111;
+    margin: auto;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.pageLink {
+    margin: 2px;
+    list-style: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.pageLink:hover {
+    background-color: #444;
+    margin: 2px;
+    list-style: none;
+    cursor: pointer;
+}

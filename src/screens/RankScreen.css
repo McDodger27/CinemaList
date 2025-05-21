@@ -1,0 +1,173 @@
+.rankScreenContainer {
+    background-color: #000;
+    margin: 0px;
+}
+.movieSelectorContainer {
+    width: 94%;
+    height: 100%;
+    padding: 4px;
+    background-color: #444;   
+    border-radius: 10px; 
+    justify-self: center;
+} 
+
+.movieButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.movieOptionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    max-width: 170px;
+    align-items: center;
+}
+
+.movieButton {
+    cursor: pointer;
+    width: 150px;
+    height: 225px;
+    margin: 0px;
+    /* background-image: linear-gradient(#ccc, #ccc, #ccc, #ccc, #f09, #111, #111); */
+    border-radius: 5px;
+    border: solid #111 4px;
+    font-size: 20px;
+    padding-top: 6px;
+    justify-content: center;
+} 
+.rankImg {
+    width: 94%;
+    height: 94%;
+    border-style: solid;
+    border-color: #444;
+    border-width: 3px;
+    border-radius: 2px;
+    margin: auto;
+}
+.unseenButtons {
+    flex-direction: row;
+}
+.previousContainer {   
+    margin: auto;
+    width: 94%;
+    margin-top: 20px;
+    padding: 4px;
+    background-color: #444;   
+    border-radius: 10px;
+}
+
+.movieButtonText {
+    color: #ccc;
+    font-size: 20px;
+    margin: 4px;
+}
+
+.blackButton {
+    width: 20%;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: #111;
+    padding: 8px;
+    color: #ccc;
+    border-radius: 6px;
+    border-width: 0px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+    .movieSelectorContainer {    
+        width: 540px;  
+        height: 100%; 
+        margin: auto;
+        padding: 20px;
+        justify-content: center;
+    }
+    .movieOptionContainer {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        max-width: 200px;
+        align-items: center;
+    }
+    .movieButton {
+        width: 220px;
+        margin: 30px;
+        height: 330px;
+        font-size: 20px;
+        padding-top: 18px;
+    } 
+
+    .movieButtonText {
+        color: #ccc;
+        font-size: 24px;
+    }
+
+    .previousContainer {
+        width: 540px;
+        margin: auto;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #444;   
+        border-radius: 10px;
+    }
+
+    .blackButton {
+        width: 20%;
+        margin-left: 15%;
+        margin-right: 15%;
+        font-size: 18px;
+        background-color: #111;
+        color: #ccc;
+        border-radius: 6px;
+        border-width: 0px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .movieSelectorContainer {    
+        width: 800px;  
+        height: 100%;  
+        margin: auto;
+        padding: 20px;
+        background-color: #444;   
+        border-radius: 10px;
+        justify-content: center;
+    }
+    .movieButton {
+        cursor: pointer;
+        width: 300px;
+        margin: 30px;
+        height: 450px;
+        background-color: #ccc;
+        border-radius: 5px;
+        font-size: 20px;
+        padding-top: 22px;
+    } 
+
+    .movieButtonText {
+        color: #ccc;
+        font-size: 24px;
+    }
+
+    .previousContainer {
+        width: 800px;
+        margin: auto;
+        margin-top: 10px;
+        padding: 20px;
+        background-color: #444;   
+        border-radius: 10px;
+    }
+    .blackButton {
+        width: 20%;
+        margin-left: 15%;
+        margin-right: 15%;
+        font-size: 18px;
+        background-color: #111;
+        color: #ccc;
+        border-radius: 6px;
+        border-width: 0px;
+        cursor: pointer;
+    }
+}

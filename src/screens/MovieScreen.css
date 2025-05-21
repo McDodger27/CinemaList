@@ -1,0 +1,58 @@
+.movieInfoContainer {
+    margin: auto;
+    margin-top: 16px;
+    background-color: #444;
+    width: 360px;
+    background-color: #444;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.movieImageContainer {
+    margin: auto;
+    width: 330px;
+    height: 450px;
+    border-radius: 5px;
+    font-size: 20px;
+    padding-top: 11px;
+}
+.movieScreenImage {
+    width: 94%;
+    height: 94%;
+    border-style: solid;
+    border-color: #111;
+    border-width: 3px;
+    border-radius: 2px;
+    margin: auto;
+}
+.movieTitle {
+    font-size: 24px;
+    color: #ccc;
+    background-color: #111;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-width: 3px;
+    border-style: solid;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.buttonsContainer {
+    display: inline-flex;
+}
+.movieInfoButton {
+    width: 120px;
+    height: 40px;
+    color: #ccc;
+    background-color: #111;
+    border-width: 0px;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 10px;
+}
+.movieAltText {
+    background-color: #111;
+    width:fit-content;
+    justify-self: center;
+    padding: 5px;
+    border-radius: 6px;
+}

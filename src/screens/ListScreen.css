@@ -1,0 +1,134 @@
+.movieListContainer {
+    text-align: left;
+    width: auto;
+    background-color: #282828;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    padding-top: 0.02px;
+    margin-top: 6px;
+}
+.movieListItem {
+    margin: 4px;
+    color: #ccc;
+    padding-left: 8px;
+    background-color: #000;
+    margin-top: 8px;
+    border-radius: 2px;
+    
+}
+.movieList {
+    padding-left: 0px;
+}
+
+.subText {
+    font-size: 13px;
+}
+.imageContainer {
+    min-width: 100px;
+    width: 100px;
+    min-height: 150px;
+    max-height: 150px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-left: 4px;
+}
+.searchBar {
+    height: 24px;
+    width: 220px;
+    background-color: #444;
+    color: #ccc;
+    font-size: 16px;
+    border-style: solid;
+    border-color: #222;
+    border-radius: 8px;
+}
+.searchBar::placeholder {
+    color: #aaa
+}
+.searchBar:focus {
+    background-color: #111;
+}
+.rankUserListButton {
+    color: #ccc;
+    background-color: #111;
+    border-width: 2px;
+    border-radius: 6px;
+    padding: 7px;
+    margin: auto;
+    font-size: 20px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+
+@media screen and (min-width: 540px) {
+    .movieListContainer {        
+        margin-left: 12%;
+        margin-right: 12%;
+        min-width: 440px;
+    }
+    
+    .movieListItem {
+        color: #ccc;
+        font-size: 22px;
+    }
+    
+    .subText {
+        font-size: 15px;
+    }
+    .searchBar {
+        height: 30px;
+        width: 272px;
+        font-size: 20px;        
+    }
+}
+
+@media screen and (min-width: 701px) {
+    .movieListContainer {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    .movieListItem {
+        color: #ccc;
+        font-size: 26px;
+    }
+    .searchBar {
+        height: 40px;
+        width: 328px;
+        font-size: 24px;        
+    }
+    
+    .subText {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1001px) {
+    .movieListContainer {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    .movieListItem {
+        color: #ccc;
+        font-size: 24px;
+    }    
+    .searchBar {
+        height: 48px;
+        width: 408px;
+        font-size: 30px;        
+    }
+    .subText {
+        font-size: 18px;
+    }    
+}
+.altText {
+    background-color: #282828;
+    width: 150px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 2px;
+}
+.listFooter {
+    display: flex;
+}

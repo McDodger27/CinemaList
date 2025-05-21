@@ -1,0 +1,22 @@
+nav {
+    display: flex;
+    justify-content: center;
+}
+.navLink {
+  padding: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.colorSelector {
+  margin-top: 19px;
+}
+@media screen and (min-width: 600px) {
+  .navLink {
+    font-size: 20px;
+  }
+  .colorSelector {
+    font-size: 20px;
+    margin-top: 23px;
+  }
+}
