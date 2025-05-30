@@ -17,7 +17,7 @@
     "userland": "^0.4.3",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://mcdodger27.github.io/CinemaList",
+  "homepage": "https://mcdodger27.github.io/CinemaList/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
