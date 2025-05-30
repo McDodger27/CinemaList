@@ -10,11 +10,15 @@ import AuthContextProvider from './context/authContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const repoName = '/CinemaList';
+
+const isGithubPages = window.location.hostname === 'mcdodger27.github.io';
+
 root.render(
   <AuthContextProvider>
     <MovieContextProvider>
       <ColorContextProvider>        
-        <BrowserRouter>
+        <BrowserRouter basename={isGithubPages ? repoName : '/'}>
           <App />
         </BrowserRouter>
       </ColorContextProvider>
