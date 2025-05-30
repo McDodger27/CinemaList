@@ -10,11 +10,13 @@ import AuthContextProvider from './context/authContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const repoName = '/CinemaList';
+
 root.render(
   <AuthContextProvider>
     <MovieContextProvider>
       <ColorContextProvider>        
-        <BrowserRouter>
+      <BrowserRouter basename={repoName}>
           <App />
         </BrowserRouter>
       </ColorContextProvider>
