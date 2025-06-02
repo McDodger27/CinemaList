@@ -196,7 +196,8 @@ function PostMovieScreen({ mode }) {
                     movieData.poster.push(poster);
                 }
             });
-            editMovie(indexId, movieData);
+            const userID = sessionStorage.getItem('userID');
+            editMovie(indexId, userID, movieData);
             authCtx.refreshData();
             navigate("/"); // navigate to home page.
         } else {

@@ -27,9 +27,10 @@ export function Navbar() {
     }
 
     function changeColor(event) {
+        const userID = sessionStorage.getItem('userID');
         const newColor = event.target.value;
         colorCtx.setColor(newColor);
-        updateColor(newColor);
+        updateColor(userID, newColor);
     }
 
     function userLogout() {

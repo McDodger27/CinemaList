@@ -16,7 +16,8 @@ function ColorContextProvider({ children }) {
 
     useEffect(() => {
         async function getColor() {
-            const response = await fetchUserData();
+            const userID = sessionStorage.getItem('userID');
+            const response = await fetchUserData(userID);
             if (response?.color) {
                 const color = response.color;
                 setColor(color);

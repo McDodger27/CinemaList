@@ -38,8 +38,8 @@ function LoginScreen() {
         try {
             const response = await login(email, password);
             const token = response[0];
-            console.log(token);
-            authCtx.authenticate(token, email);
+            const userID = response[1];
+            authCtx.authenticate(token, userID, email);
             navigate("/");
         }
         catch (error) {

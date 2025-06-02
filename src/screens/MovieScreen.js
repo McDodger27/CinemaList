@@ -76,7 +76,6 @@ function MovieScreen() {
     }
 
     function navEditMovie() {
-        console.log("We are gonna navigate to the edit movie screen.");
         navigate(`/postmovie/:${movie.id}`);
     }
 

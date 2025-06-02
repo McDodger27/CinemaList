@@ -50,33 +50,37 @@ function SignupScreen() {
         }
         try {
             const response = await createUser(email, password);
-            const token = response[0];            
-            const users = await fetchUsers();
-            if (users !== null) {
-                const emails = [];
-                users.forEach(user => {
-                    emails.push(user.email);
-                });
-                if (!emails.includes(email)) {
-                    addUser({
-                        groups: [],
-                        viewedMovies: [],
-                        email: email,
-                        color: colorCtx.primary,
-                        level: 1
-                    });
-                }
-            } else {
-                addUser({
-                    groups: [],
-                    viewedMovies: [],
-                    email: email,
-                    color: colorCtx.primary,
-                    level: 1
-                });
-            }
-            
-            authCtx.authenticate(token, email);
+            const token = response[0]; 
+            const userID = response[1];           
+            // const users = await fetchUsers();
+            // if (users !== null) {
+            //     const emails = [];
+            //     users.forEach(user => {
+            //         emails.push(user.email);
+            //     });
+            //     if (!emails.includes(email)) {
+            //         addUser({
+            //             viewedMovies: [],
+            //             email: email,
+            //             color: colorCtx.primary,
+            //             level: 1
+            //         });
+            //     }
+            // } else {
+            //     addUser({
+            //         viewedMovies: [],
+            //         email: email,
+            //         color: colorCtx.primary,
+            //         level: 1
+            //     });
+            // }
+            addUser(userID, {
+                viewedMovies: [],
+                email: email,
+                color: colorCtx.primary,
+                level: 1
+            })
+            authCtx.authenticate(token, userID, email);
             navigate("/");
         }
         catch (error) {

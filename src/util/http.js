@@ -50,15 +50,16 @@ export async function fetchMovies() {
     return movies;
 }
 
-export async function editMovie(id, movieData) {
-    const usersResponse = await axios.get(DATABASE_URL + 'users.json');
-    for (const key in usersResponse.data) {
-        if (usersResponse.data.hasOwnProperty(key)) {
-            const userMovie = usersResponse.data[key].viewedMovies[id];
-            // axios.update(DATABASE_URL + `/users/${key}/viewedMovies/${id}.json`, {...userMovie, ...movieData});
-            updateViewedMovie(movieData);
-        }
-    }
+export async function editMovie(id, userKey, movieData) {
+    // const usersResponse = await axios.get(DATABASE_URL + 'users.json');
+    // for (const key in usersResponse.data) {
+    //     if (usersResponse.data.hasOwnProperty(key)) {
+    //         const userMovie = usersResponse.data[key].viewedMovies[id];
+    //         // axios.update(DATABASE_URL + `/users/${key}/viewedMovies/${id}.json`, {...userMovie, ...movieData});
+    //         updateViewedMovie(movieData);
+    //     }
+    // }
+    updateViewedMovie(userKey, movieData);
     const movieResponse = axios.get(DATABASE_URL + `/movies/${id}.json`);
     const movie = movieResponse.data
     return axios.put(DATABASE_URL + `/movies/${id}.json`, {...movie, ...movieData});
@@ -70,17 +71,17 @@ export async function updateMovie(id, movieData) {
     return axios.put(DATABASE_URL + `/movies/${id}.json`, {...movie, ...movieData});
 }
 
-export async function updateViewedMovie(movieData) {
-    const usersResponse = await axios.get(DATABASE_URL + 'users.json');
-    let userKey = '';
-        for (const key in usersResponse.data) {
-            if (usersResponse.data.hasOwnProperty(key)) {
-                const user = usersResponse.data[key];
-                if (user.email === sessionStorage.getItem('email')) {
-                    userKey = key;
-                }
-            } 
-        }
+export async function updateViewedMovie(userKey, movieData) {
+    // const usersResponse = await axios.get(DATABASE_URL + 'users.json');
+    // let userKey = '';
+    //     for (const key in usersResponse.data) {
+    //         if (usersResponse.data.hasOwnProperty(key)) {
+    //             const user = usersResponse.data[key];
+    //             if (user.email === sessionStorage.getItem('email')) {
+    //                 userKey = key;
+    //             }
+    //         } 
+    //     }
     return axios.put(DATABASE_URL + `/users/${userKey}/viewedMovies/${movieData.id}.json`, movieData);
 }
 
@@ -88,24 +89,23 @@ export async function removeMovie(id) {
     const usersResponse = await axios.get(DATABASE_URL + 'users.json');
     for (const key in usersResponse.data) {
         if (usersResponse.data.hasOwnProperty(key)) {
-            console.log(usersResponse.data[key].viewedMovies[id]);
             axios.delete(DATABASE_URL + `/users/${key}/viewedMovies/${id}.json`);
         }
     }
     return axios.delete(DATABASE_URL + `/movies/${id}.json`);
 }
 
-export async function deleteViewedMovie(id) {
-    const usersResponse = await axios.get(DATABASE_URL + 'users.json');
-    let userKey = '';
-        for (const key in usersResponse.data) {
-            if (usersResponse.data.hasOwnProperty(key)) {
-                const user = usersResponse.data[key];
-                if (user.email === sessionStorage.getItem('email')) {
-                    userKey = key;
-                }
-            } 
-        }
+export async function deleteViewedMovie(userKey, id) {
+    // const usersResponse = await axios.get(DATABASE_URL + 'users.json');
+    // let userKey = '';
+    //     for (const key in usersResponse.data) {
+    //         if (usersResponse.data.hasOwnProperty(key)) {
+    //             const user = usersResponse.data[key];
+    //             if (user.email === sessionStorage.getItem('email')) {
+    //                 userKey = key;
+    //             }
+    //         } 
+    //     }
     return axios.delete(DATABASE_URL + `/users/${userKey}/viewedMovies/${id}.json`);
 }
 
@@ -136,16 +136,16 @@ export async function fetchUsers() {
     
 }
 
-export async function fetchUserData() {
-    const response = await axios.get(DATABASE_URL + 'users.json');
+export async function fetchUserData(userKey) {
+    // const response = await axios.get(DATABASE_URL + 'users.json');
+    const response = await axios.get(DATABASE_URL + `users/${userKey}.json`);
     if (response.data) {
-        console.log(response.data);
-        const user = Object.values(response.data).find(user => user.email === sessionStorage.getItem('email'));
+        const user = response.data;
 
         if (user) {
             const userObj = {
-                groups: user.groups,
-                viewedMovies: user.viewedMovies,
+                groups: user?.groups,
+                viewedMovies: user?.viewedMovies,
                 email: user.email,
                 color: user.color,
                 level: user.level
@@ -157,40 +157,40 @@ export async function fetchUserData() {
     return null;
 }
 
-export async function addUser(userData) {
-    const response = await axios.post(DATABASE_URL + '/users.json', userData);
+export async function addUser(key, userData) {
+    const response = await axios.put(DATABASE_URL + `users/${key}.json`, userData);
     const id = response.data.name;
     return id;
 }
 
-export async function storeViewedMovie(movieData) {
+export async function storeViewedMovie(userKey, movieData) {
 
-    const usersResponse = await axios.get(DATABASE_URL + 'users.json');
+    // const usersResponse = await axios.get(DATABASE_URL + 'users.json');
 
-    let userKey = '';
-        for (const key in usersResponse.data) {
-            if (usersResponse.data.hasOwnProperty(key)) {
-                const user = usersResponse.data[key];
-                if (user.email === sessionStorage.getItem('email')) {
-                    userKey = key;
-                }
-            } 
-        }
+    // let userKey = '';
+    //     for (const key in usersResponse.data) {
+    //         if (usersResponse.data.hasOwnProperty(key)) {
+    //             const user = usersResponse.data[key];
+    //             if (user.email === sessionStorage.getItem('email')) {
+    //                 userKey = key;
+    //             }
+    //         } 
+    //     }
     const response = await axios.post(DATABASE_URL + `/users/${userKey}/viewedMovies.json`, movieData);
     const id = response.data.name;
     return id;
 }
 
-export async function updateColor(color) {
-    const usersResponse = await axios.get(DATABASE_URL + 'users.json');
-    let userKey = '';
-        for (const key in usersResponse.data) {
-            if (usersResponse.data.hasOwnProperty(key)) {
-                const user = usersResponse.data[key];
-                if (user.email === sessionStorage.getItem('email')) {
-                    userKey = key;
-                }
-            } 
-        }
-    return axios.patch(DATABASE_URL + `/users/${userKey}.json`, { color: color });
+export async function updateColor(userKey, color) {
+    // const usersResponse = await axios.get(DATABASE_URL + 'users.json');
+    // let userKey = '';
+    //     for (const key in usersResponse.data) {
+    //         if (usersResponse.data.hasOwnProperty(key)) {
+    //             const user = usersResponse.data[key];
+    //             if (user.email === sessionStorage.getItem('email')) {
+    //                 userKey = key;
+    //             }
+    //         } 
+    //     }
+    return axios.patch(DATABASE_URL + `users/${userKey}.json`, { color: color });
 }

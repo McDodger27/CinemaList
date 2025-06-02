@@ -98,7 +98,8 @@ function MovieContextProvider({ children }) {
 
     useEffect(() => {
         async function getViewedMovies() {
-            const response = await fetchUserData();
+            const userID = sessionStorage.getItem('userID');
+            const response = await fetchUserData(userID);
             if (response?.viewedMovies) {
                 const movieList = [];
 
@@ -122,7 +123,6 @@ function MovieContextProvider({ children }) {
                         }                        
                     }
                 }
-                console.log("Movie list is ", movieList);
                 setViewedMovies(movieList);
                 viewedMovieIdsRef.current = new Set(movieList.map(m => m.id));
             }
@@ -131,6 +131,10 @@ function MovieContextProvider({ children }) {
     }, [authCtx.isAuthenticated, authCtx.refreshToken]); // this dependancy will run this effect every time the user authenticates.
 
     function addViewedMovie(movie, wins, timesRanked) {
+
+        // get user id from session storage
+        const userID = sessionStorage.getItem('userID');
+
         // This function adds a new movie to the user list based on a different movie.
         const movieData ={
             id: movie.id,
@@ -149,10 +153,14 @@ function MovieContextProvider({ children }) {
             return newMovieList;
         });
         viewedMovieIdsRef.current.add(movie.id);
-        updateViewedMovie(movieData);
+        updateViewedMovie(userID, movieData);
     }
 
     function rankMovies(winner, loser) {
+
+        // get user id from session storage
+        const userID = sessionStorage.getItem('userID');
+
         // const viewedMovieIds = [];
         // if (viewedMovies) {
         //     viewedMovies.forEach(movie => {
@@ -168,7 +176,7 @@ function MovieContextProvider({ children }) {
                 if (movie.id === betterMovie.id) {
                     movie.wins += 1;
                     movie.timesRanked += 1;
-                    updateViewedMovie(movie);
+                    updateViewedMovie(userID, movie);
                 }
             });
         }
@@ -178,7 +186,7 @@ function MovieContextProvider({ children }) {
             viewedMovies.forEach((movie) => {
                 if (movie.id === otherMovie.id) {
                     movie.timesRanked += 1;
-                    updateViewedMovie(movie);
+                    updateViewedMovie(userID, movie);
                 }
             });
         }
@@ -214,9 +222,13 @@ function MovieContextProvider({ children }) {
     }
 
     function removeViewedMovie(movie) {
+
+    // get user id from session storage
+    const userID = sessionStorage.getItem('userID');
+
         viewedMovies.splice(viewedMovies.indexOf(movie), 1);
         viewedMovieIdsRef.current.delete(movie.id);
-        deleteViewedMovie(movie.id);
+        deleteViewedMovie(userID, movie.id);
         
     }
 

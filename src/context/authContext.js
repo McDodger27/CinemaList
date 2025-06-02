@@ -5,7 +5,7 @@ export const AuthContext = createContext({
     token: '',
     email: '',
     userLevel: 0,
-    getEmail: () => {},
+    getUserID: () => {},
     isAuthenticated: false,
     authenticate: () => {},
     logout: () => {},
@@ -21,7 +21,8 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         async function getUserData() {
-            const response = await fetchUserData();      
+            const userID = sessionStorage.getItem('userID');
+            const response = await fetchUserData(userID);      
             if (response?.level) {
                 setUserLevel(response.level);
             }
@@ -33,13 +34,14 @@ function AuthContextProvider({ children }) {
         setRefreshToken(refreshToken + 1);
     }
 
-    function authenticate(token, email) {
+    function authenticate(token, userID, email) {
         try {        
             console.log("authenticate was called in auth context");
             setAuthToken(token);
             setEmail(email);
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('email', email);
+            sessionStorage.setItem('userID', userID);
             refreshData();
         }
         catch (error) {
@@ -47,9 +49,9 @@ function AuthContextProvider({ children }) {
         }
     }
 
-    async function getEmail() {
-        const storedEmail = sessionStorage.getItem('email')
-        return storedEmail;
+    async function getUserID() {
+        const storedUserID = sessionStorage.getItem('userID');
+        return storedUserID;
     }
 
     function logout() {
@@ -57,13 +59,14 @@ function AuthContextProvider({ children }) {
         setEmail(null);
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('email');
+        sessionStorage.removeItem('userID');
     }
 
     const value = {
         token: authToken,
         email: email,
         userLevel: userLevel,
-        getEmail: getEmail,
+        getUserID: getUserID,
         isAuthenticated: !!authToken,
         authenticate: authenticate,
         logout: logout,
