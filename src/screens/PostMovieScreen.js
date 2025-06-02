@@ -44,7 +44,6 @@ function PostMovieScreen({ mode }) {
             async function getMovies() {
                 const response = await fetchMovies();
                 const fetchedMovies = response;
-                console.log(fetchedMovies);
                 fetchedMovies.sort((a, b) => a.id - b.id);    // sort movies by id to get the highest id at the top
                 setMovies(fetchedMovies);
                 setIndexId(parseInt(fetchedMovies[fetchedMovies.length - 1].id) + 1);
