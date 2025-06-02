@@ -57,13 +57,13 @@ export function MovieList({ mode }) {
     }
            
 
-    let pages = parseInt((displayList.length / 10).toFixed(0));
-    if (pages < displayList.length / 10) {pages += 1};
+    let pages = parseInt((displayList.length / 20).toFixed(0));
+    if (pages < displayList.length / 20) {pages += 1};
 
     function TenMovies() {
-            const index = (currentPage * 10) - 10;
+            const index = (currentPage * 20) - 20;
             const moviesToDisplay = []
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 if (index + i <= displayList.length - 1) {
                     moviesToDisplay.push(displayList[index + i]);
                 }                
