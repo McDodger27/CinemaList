@@ -115,7 +115,7 @@ function SignupScreen() {
             <input style={inputStyle} type="password" onChange={handleConfirmPassword} value={enteredConfirmPassword} placeholder="Confirm Password" />
                 <br />
             <input type="submit" value="Submit" style={inputStyle} />
-            <p>Already have an acount? <span style={{ color: colorCtx.primary, cursor: 'pointer' }} onClick={navLogin}>Login</span></p>
+            <p>Already have an account? <span style={{ color: colorCtx.primary, cursor: 'pointer' }} onClick={navLogin}>Login</span></p>
         </form>
     )
 }
