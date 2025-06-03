@@ -117,10 +117,11 @@ export function MovieList({ mode }) {
     }
 
     return (
-        <div>
+        <div>            
             <input className="searchBar" type="text" value={searchInput} onChange={handleSearch} placeholder="search by title, director or year" />
         
             <div className="movieListContainer">
+                { mode === "user" ? <p style={{justifySelf: 'center', color: '#ccc', fontSize: 26}}>Your List</p> : <p style={{justifySelf: 'center', color: '#ccc', fontSize: 26}}>Global List</p> }
                 <TenMovies />
                 <div className="listFooter">
                     <PageSelector currentPage={currentPage} navLink={navLink} pages={pages} />

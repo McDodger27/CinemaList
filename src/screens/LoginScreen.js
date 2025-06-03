@@ -70,7 +70,7 @@ function LoginScreen() {
             <input style={inputStyle} type="password" onChange={handlePassword} value={enteredPassword} placeholder="Password" />
                 <br />
             <input value="Submit" type="submit" style={inputStyle} />
-            <p>Don't have an acount? <span style={{ color: colorCtx.primary, cursor: 'pointer' }} onClick={navSignup}>Sign Up</span></p>
+            <p>Don't have an account? <span style={{ color: colorCtx.primary, cursor: 'pointer' }} onClick={navSignup}>Sign Up</span></p>
         </form>
     );
 }
