@@ -61,13 +61,13 @@ export async function editMovie(id, userKey, movieData) {
     // }
     updateViewedMovie(userKey, movieData);
     const movieResponse = axios.get(DATABASE_URL + `/movies/${id}.json`);
-    const movie = movieResponse.data
+    const movie = movieResponse.data;
     return axios.put(DATABASE_URL + `/movies/${id}.json`, {...movie, ...movieData});
 }
 
 export async function updateMovie(id, movieData) {
     const movieResponse = axios.get(DATABASE_URL + `/movies/${id}.json`);
-    const movie = movieResponse.data
+    const movie = movieResponse.data;
     return axios.put(DATABASE_URL + `/movies/${id}.json`, {...movie, ...movieData});
 }
 

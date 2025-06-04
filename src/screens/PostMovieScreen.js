@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import { ColorContext } from "../context/colorContext"
 import { MovieContext } from "../context/movieContext";
-import { fetchMovies, editMovie } from "../util/http";
+import { fetchMovies, editMovie, updateMovie } from "../util/http";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 
@@ -11,7 +11,7 @@ function PostMovieScreen({ mode }) {
     const movieCtx = useContext(MovieContext);
     const authCtx = useContext(AuthContext);
 
-    const [movies, setMovies] = useState();
+    const [movies, setMovies] = useState(movieCtx.movies);
     const [isLoading, setIsLoading] = useState(true);
 
 
@@ -42,6 +42,7 @@ function PostMovieScreen({ mode }) {
     useEffect(() => {
         if (!movies) {        
             async function getMovies() {
+                console.log("entered block 1");
                 const response = await fetchMovies();
                 const fetchedMovies = response;
                 fetchedMovies.sort((a, b) => a.id - b.id);    // sort movies by id to get the highest id at the top
@@ -51,6 +52,9 @@ function PostMovieScreen({ mode }) {
             } 
             getMovies();
         } else {
+            console.log("entered block 2");
+            console.log(parseInt(movieCtx.movies[movieCtx.movies.length - 1].id) + 1);
+            setIndexId(parseInt(movieCtx.movies[movieCtx.movies.length - 1].id) + 1);
             setIsLoading(false);
         }
     }, []);
@@ -203,8 +207,12 @@ function PostMovieScreen({ mode }) {
                 }
             });
             const userID = sessionStorage.getItem('userID');
-            editMovie(indexId, userID, movieData);
-            authCtx.refreshData();
+            if (mode === "edit") {
+                editMovie(indexId, userID, movieData);
+            } else {
+                updateMovie(indexId, movieData);
+                movieCtx.movies.push(movieData);
+            }
             navigate("/"); // navigate to home page.
         } else {
             alert("All fields not marked optional must be filled out. Please verify that all information is accurate before trying to submit again.");
