@@ -11,7 +11,6 @@ export async function authenticate(mode, email, password) {
             returnSecureToken: true
         }
     );
-    console.log(response);
     const token = response.data.idToken;
     const userId = response.data.localId;
     return [token, userId];

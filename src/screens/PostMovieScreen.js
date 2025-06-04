@@ -42,7 +42,6 @@ function PostMovieScreen({ mode }) {
     useEffect(() => {
         if (!movies) {        
             async function getMovies() {
-                console.log("entered block 1");
                 const response = await fetchMovies();
                 const fetchedMovies = response;
                 fetchedMovies.sort((a, b) => a.id - b.id);    // sort movies by id to get the highest id at the top
@@ -52,8 +51,6 @@ function PostMovieScreen({ mode }) {
             } 
             getMovies();
         } else {
-            console.log("entered block 2");
-            console.log(parseInt(movieCtx.movies[movieCtx.movies.length - 1].id) + 1);
             setIndexId(parseInt(movieCtx.movies[movieCtx.movies.length - 1].id) + 1);
             setIsLoading(false);
         }
