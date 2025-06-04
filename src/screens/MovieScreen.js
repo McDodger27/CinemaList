@@ -30,8 +30,10 @@ function MovieScreen() {
 
     useEffect(() => {
         async function getMovies() {
-            const response = await fetchMovies();
-            setMovies(response);
+            // const response = await fetchMovies();
+            // setMovies(response);
+            const movieList = movieContext.movies;
+            setMovies(movieList);
             setIsLoading(false);
         } 
         getMovies();

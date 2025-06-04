@@ -75,7 +75,7 @@ function PostMovieScreen({ mode }) {
         }
     }, [movies]);  // Only run when movies or movieId changes  
 
-    function updatePosters(number, enteredValue) {
+    function updatePosters(number, enteredValue) { // handles all of the poster values
         switch (number) {
             case 1:
                 setPoster1(enteredValue);
@@ -136,6 +136,8 @@ function PostMovieScreen({ mode }) {
         updatePosters(4, event.target.value);
     } 
     
+    // css styles
+
     const labelStyle = {
         color: '#ccc',
     }
@@ -167,6 +169,8 @@ function PostMovieScreen({ mode }) {
         alignItems: 'center'
     }
 
+    // function for submitting the form
+
     function handleSubmit() {
         if (title && description && director && year && rating && runtime && poster1) {
             const posters = [poster1, poster2, poster3, poster4];
@@ -176,6 +180,9 @@ function PostMovieScreen({ mode }) {
                 movieWins = wins;
                 movieRanks = timesRanked;
             }
+
+            // map data as an object
+
             const movieData = {
                 description: description,
                 director: director,

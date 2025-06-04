@@ -14,6 +14,8 @@ function ColorContextProvider({ children }) {
 
     const authCtx = useContext(AuthContext);
 
+    // get color from user data in  database
+
     useEffect(() => {
         async function getColor() {
             const userID = sessionStorage.getItem('userID');
@@ -26,6 +28,7 @@ function ColorContextProvider({ children }) {
         getColor();
     }, [authCtx.isAuthenticated]);
 
+    // function to change color
     function setColor(color) {
         if (color === 'pink') {
             setPrimary('#f09');
