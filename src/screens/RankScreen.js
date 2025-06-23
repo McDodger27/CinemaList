@@ -5,6 +5,7 @@ import './RankScreen.css';
 import { AuthContext } from "../context/authContext";
 import { ColorContext } from "../context/colorContext";
 import { useNavigate } from "react-router-dom";
+import { fetchMovieById } from "../util/http";
 
 export function RankScreen({ mode }) {
     const movieContext = useContext(MovieContext);
@@ -68,10 +69,16 @@ export function RankScreen({ mode }) {
     function pickMovie1() {    
         // this function is called when the user pushes option one
         if (mode === "viewed") {
-            movieContext.rankViewedMovies(movie1, movie2); // this function adds a win to movie1 in the viewed movies list
+            //movieContext.rankViewedMovies(movie1, movie2); // this function adds a win to movie1 in the viewed movies list
+            console.log("Movie1 ID is: ", movies[movie1].id)
+            console.log("Movie2 ID is: ", movies[movie2].id)
         } else {
-            movieContext.rankMovies(movie1, movie2); // this function adds a win to movie1 in the all movies
+            //movieContext.rankMovies(movie1, movie2); // this function adds a win to movie1 in the all movies
+            console.log("Movie1 ID is: ", movies[movie1].id)
+            console.log("Movie2 ID is: ", movies[movie2].id)
         }        
+        const dataForMovie1 = fetchMovieById(movies[movie1].id);
+        console.log("This is the data for movie1: ", dataForMovie1);
         setMovieOptions();  
     }
 
