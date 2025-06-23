@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-import { deleteViewedMovie, fetchMovies, fetchUserData, storeViewedMovie, updateMovie, updateViewedMovie } from "../util/http";
+import { deleteViewedMovie, fetchMovieById, fetchMovies, fetchUserData, storeViewedMovie, updateMovie, updateViewedMovie } from "../util/http";
 import { AuthContext } from "./authContext";
 
 export const MovieContext = createContext({
@@ -156,7 +156,7 @@ function MovieContextProvider({ children }) {
         updateViewedMovie(userID, movieData);
     }
 
-    function rankMovies(winner, loser) {
+    async function rankMovies(winner, loser) {
 
         // get user id from session storage
         const userID = sessionStorage.getItem('userID');
@@ -191,9 +191,20 @@ function MovieContextProvider({ children }) {
             });
         }
         // updating variables locally 
-        movies[winner].wins += 1;
-        movies[winner].timesRanked += 1;
-        movies[loser].timesRanked += 1;
+
+        // fetch movie data
+        const movie1Data = await fetchMovieById(movies[winner].id);
+        const movie2Data = await fetchMovieById(movies[loser].id);
+
+        // get wins and timesRanked for winner and loser
+        const winnerWins = movie1Data.data.wins;
+        const winnerTimesRanked = movie1Data.data.timesRanked;
+        const loserTimesRanked = movie2Data.data.timesRanked;
+
+        // update local variables based on database data
+        movies[winner].wins = winnerWins + 1;
+        movies[winner].timesRanked = winnerTimesRanked + 1;
+        movies[loser].timesRanked = loserTimesRanked + 1;
         // updating database instances of winning and losing movies globally
         updateMovie(betterMovie.id, movies[winner]);
         updateMovie(otherMovie.id, movies[loser]);

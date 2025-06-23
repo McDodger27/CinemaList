@@ -66,19 +66,13 @@ export function RankScreen({ mode }) {
         setCanUndo(true);
     }
 
-    function pickMovie1() {    
+    async function pickMovie1() {    
         // this function is called when the user pushes option one
         if (mode === "viewed") {
-            //movieContext.rankViewedMovies(movie1, movie2); // this function adds a win to movie1 in the viewed movies list
-            console.log("Movie1 ID is: ", movies[movie1].id)
-            console.log("Movie2 ID is: ", movies[movie2].id)
+            movieContext.rankViewedMovies(movie1, movie2); // this function adds a win to movie1 in the viewed movies list
         } else {
-            //movieContext.rankMovies(movie1, movie2); // this function adds a win to movie1 in the all movies
-            console.log("Movie1 ID is: ", movies[movie1].id)
-            console.log("Movie2 ID is: ", movies[movie2].id)
+            movieContext.rankMovies(movie1, movie2); // this function adds a win to movie1 in the all movies
         }        
-        const dataForMovie1 = fetchMovieById(movies[movie1].id);
-        console.log("This is the data for movie1: ", dataForMovie1);
         setMovieOptions();  
     }
 

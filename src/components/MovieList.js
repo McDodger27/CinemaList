@@ -96,7 +96,7 @@ export function MovieList({ mode }) {
                                             <div style={{marginLeft: '10px'}}>
                                                 <p onClick={clickMovie}>{movie.title} ({movie.releaseYear})</p>
                                                 <p className="subText">
-                                                    {((movie.wins / movie.timesRanked) * 100).toFixed(0)}% rated {movie.timesRanked} times, won {movie.wins} times <br /><br />
+                                                    {((movie.wins / movie.timesRanked) * 100).toFixed(0)}% ranked {movie.timesRanked} times, won {movie.wins} times <br /><br />
                                                     { (mode === "user" && sublistPosition > 0) && <span className="subText">Global ranking: {sublistPosition}.</span>}
                                                     { (mode === "global" && sublistPosition > 0) && <span className="altText">Your ranking: <span style={{ color: colorCtx.primary }} >{sublistPosition}</span>.</span>}
                                                 </p>
@@ -122,6 +122,7 @@ export function MovieList({ mode }) {
         
             <div className="movieListContainer">
                 { mode === "user" ? <p style={{justifySelf: 'center', color: '#ccc', fontSize: 26}}>Your List</p> : <p style={{justifySelf: 'center', color: '#ccc', fontSize: 26}}>Global List</p> }
+                <PageSelector currentPage={currentPage} navLink={navLink} pages={pages} />
                 <TenMovies />
                 <div className="listFooter">
                     <PageSelector currentPage={currentPage} navLink={navLink} pages={pages} />
