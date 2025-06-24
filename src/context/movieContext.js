@@ -199,11 +199,13 @@ function MovieContextProvider({ children }) {
         // get wins and timesRanked for winner and loser
         const winnerWins = movie1Data.data.wins;
         const winnerTimesRanked = movie1Data.data.timesRanked;
+        const loserWins = movie2Data.data.wins;
         const loserTimesRanked = movie2Data.data.timesRanked;
 
         // update local variables based on database data
         movies[winner].wins = winnerWins + 1;
         movies[winner].timesRanked = winnerTimesRanked + 1;
+        movies[loser].wins = loserWins;
         movies[loser].timesRanked = loserTimesRanked + 1;
         // updating database instances of winning and losing movies globally
         updateMovie(betterMovie.id, movies[winner]);
