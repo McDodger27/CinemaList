@@ -80,9 +80,15 @@ export function MovieList({ mode }) {
                                     let sublistPosition = 0;
                                     if (subList && subList.length > 0) {
                                         sublistPosition = subList.indexOf(subList.find(subMovie => { if (subMovie.id === movie.id) return subMovie; })) + 1;
-                                    }                                    
+                                    }  
+                                    let movieWinRatioMessage = `Record: ${movie.wins}-${movie.timesRanked - movie.wins} - `;
+                                    movieWinRatioMessage += movie.timesRanked > 0 ? ((movie.wins / movie.timesRanked) * 100).toFixed(0) + "% " : "";
+                                    // movieWinRatioMessage += `${movie.timesRanked} ${movie.timesRanked !== 1 ? "Matchups" : "Matchup"}  ${movie.wins} ${movie.wins !== 1 ? "Wins" : "Win"}`;
+                                    if (movie.timesRanked < 1) {
+                                        movieWinRatioMessage = "Unranked";     
+                                    }                         
                                     return <li style={{ display: 'flex', flexDirection: 'row'}} value={mainList.indexOf(movie) + 1}  className="movieListItem" key={movie.id}>
-                                            <p>{mainList.indexOf(movie) + 1}.</p>
+                                            <p>{movie.timesRanked > 0 ? `${mainList.indexOf(movie) + 1}.` : ""}</p>
                                             <div className="imageContainer">
                                                 <img style={{
                                                     width: '100%',
@@ -96,7 +102,8 @@ export function MovieList({ mode }) {
                                             <div style={{marginLeft: '10px'}}>
                                                 <p onClick={clickMovie}>{movie.title} ({movie.releaseYear})</p>
                                                 <p className="subText">
-                                                    {((movie.wins / movie.timesRanked) * 100).toFixed(0)}% ranked {movie.timesRanked} times, won {movie.wins} times <br /><br />
+                                                    {movieWinRatioMessage} <br /><br />
+                                                    {/* {((movie.wins / movie.timesRanked) * 100).toFixed(0)}% ranked {movie.timesRanked} times, won {movie.wins} times <br /><br /> */}
                                                     { (mode === "user" && sublistPosition > 0) && <span className="subText">Global ranking: {sublistPosition}.</span>}
                                                     { (mode === "global" && sublistPosition > 0) && <span className="altText">Your ranking: <span style={{ color: colorCtx.primary }} >{sublistPosition}</span>.</span>}
                                                 </p>
