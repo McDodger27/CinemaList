@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/CinemaList/static/css/main.47138698.css",
-    "main.js": "/CinemaList/static/js/main.58d282db.js",
+    "main.css": "/CinemaList/static/css/main.51f0911d.css",
+    "main.js": "/CinemaList/static/js/main.4610f49c.js",
     "static/js/453.42c00b9d.chunk.js": "/CinemaList/static/js/453.42c00b9d.chunk.js",
     "index.html": "/CinemaList/index.html",
-    "main.47138698.css.map": "/CinemaList/static/css/main.47138698.css.map",
-    "main.58d282db.js.map": "/CinemaList/static/js/main.58d282db.js.map",
+    "main.51f0911d.css.map": "/CinemaList/static/css/main.51f0911d.css.map",
+    "main.4610f49c.js.map": "/CinemaList/static/js/main.4610f49c.js.map",
     "453.42c00b9d.chunk.js.map": "/CinemaList/static/js/453.42c00b9d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.47138698.css",
-    "static/js/main.58d282db.js"
+    "static/css/main.51f0911d.css",
+    "static/js/main.4610f49c.js"
   ]
 }
