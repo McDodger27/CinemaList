@@ -133,7 +133,7 @@ export function MovieList({ mode }) {
                 <TenMovies />
                 <div className="listFooter">
                     <PageSelector currentPage={currentPage} navLink={navLink} pages={pages} />
-                    { mode === "user" && mainList.length > 0 && <button style={{ borderColor: colorCtx.primary }} className="rankUserListButton" onClick={navigateUserList}>Rank this list</button> }
+                    {/* { mode === "user" && mainList.length > 0 && <button style={{ borderColor: colorCtx.primary }} className="rankUserListButton" onClick={navigateUserList}>Rank this list</button> } */}
                 </div>
             </div>
         </div>

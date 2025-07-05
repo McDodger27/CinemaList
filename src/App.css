@@ -33,7 +33,7 @@ body {
 @media screen and (min-width: 1000px) {
     .header {
         font-weight: bold;
-        font-size: 50px;
+        font-size: 42px;
         color: #f09;
         width: 300px;
         cursor: pointer;
